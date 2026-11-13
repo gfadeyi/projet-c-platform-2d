@@ -29,7 +29,7 @@ Projet final du cours de Langage C (ESGI, 2e année, 2026-2027).
 
 ## Installation
 
-Sous Linux (Debian / Ubuntu) :
+Sous Linux (Debian / Ubuntu) : si besoin
 
 ```bash
 sudo apt install build-essential libsdl1.2-dev
