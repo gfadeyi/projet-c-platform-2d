@@ -6,6 +6,7 @@
 #include "config.h"
 #include "joueur.h"
 #include "hud.h"
+#include "menu.h"
 
 #define DELAI_IMAGE_MS 16
 
@@ -44,6 +45,13 @@ int main(int argc, char *argv[])
     sol.y = SOL_Y;
     sol.w = LARGEUR_FENETRE;
     sol.h = HAUTEUR_FENETRE - SOL_Y;
+
+    if (menu_executer(ecran) == MENU_QUITTER) {
+        SDL_Quit();
+        return EXIT_SUCCESS;
+    }
+
+    SDL_WM_SetCaption("Platform 2D", NULL);
 
     temps_precedent = SDL_GetTicks();
 
