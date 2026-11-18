@@ -1,5 +1,6 @@
 CC      = gcc
 CFLAGS  = -Wall -Wextra -std=c99 -g -Iinclude $(shell sdl-config --cflags)
+CFLAGS += -MMD -MP
 LDFLAGS = $(filter-out -mwindows,$(shell sdl-config --libs))
 
 ifeq ($(OS),Windows_NT)
@@ -27,3 +28,5 @@ clean:
 	rm -rf build $(EXE)
 
 .PHONY: all run clean
+
+-include $(OBJ:.o=.d)

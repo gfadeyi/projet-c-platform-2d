@@ -2,16 +2,23 @@
 #include <stdlib.h>
 #include <SDL.h>
 
-#define LARGEUR_FENETRE 800
-#define HAUTEUR_FENETRE 600
+#include "config.h"
+#include "joueur.h"
 
 #define DELAI_IMAGE_MS 16
+
+#define DT_MAX 0.05f
 
 int main(int argc, char *argv[])
 {
     SDL_Surface *ecran = NULL;
     SDL_Event evenement;
     int continuer = 1;
+    Joueur joueur;
+    SDL_Rect sol;
+    Uint32 temps_precedent;
+    Uint32 temps_actuel;
+    float dt;
 
     (void)argc;
     (void)argv;
@@ -30,6 +37,14 @@ int main(int argc, char *argv[])
     }
     SDL_WM_SetCaption("Platform 2D", NULL);
 
+    joueur_initialiser(&joueur, 100.0f, 100.0f);
+    sol.x = 0;
+    sol.y = SOL_Y;
+    sol.w = LARGEUR_FENETRE;
+    sol.h = HAUTEUR_FENETRE - SOL_Y;
+
+    temps_precedent = SDL_GetTicks();
+
     while (continuer) {
         while (SDL_PollEvent(&evenement)) {
             if (evenement.type == SDL_QUIT) {
@@ -40,7 +55,19 @@ int main(int argc, char *argv[])
             }
         }
 
+        temps_actuel = SDL_GetTicks();
+        dt = (float)(temps_actuel - temps_precedent) / 1000.0f;
+        temps_precedent = temps_actuel;
+        if (dt > DT_MAX) {
+            dt = DT_MAX;
+        }
+
+        joueur_lire_clavier(&joueur, SDL_GetKeyState(NULL));
+        joueur_mettre_a_jour(&joueur, dt);
+
         SDL_FillRect(ecran, NULL, SDL_MapRGB(ecran->format, 0x00, 0x4C, 0xFF));
+        SDL_FillRect(ecran, &sol, SDL_MapRGB(ecran->format, 60, 160, 60));
+        joueur_dessiner(&joueur, ecran);
 
         SDL_Flip(ecran);
 
