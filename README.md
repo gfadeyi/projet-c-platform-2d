@@ -11,13 +11,21 @@ Projet final du cours de Langage C (ESGI, 2e année, 2026-2027).
 - Éditeur de cartes
 - Système de plugins (extensions chargées par le jeu)
 
-## Équipe
+## Répartition des tâches
 
-| Membre | Rôle |
-| --- | --- |
-| Gael | Moteur physique, rendu, combat |
-| Farmata | Gameplay, menus, IA des ennemis |
-| Calvin | Fichiers, éditeur de cartes, plugins |
+Pour garantir un travail équitable, la charge de chaque tâche est estimée en points de difficulté (1 = simple, 6 = gros morceau).
+
+| Membre | Tâches | Charge estimée |
+| --- | --- | --- |
+| Gaël | **Moteur et joueur**<br>Boucle de jeu et gestion du temps (2)<br>Physique : gravité, saut, collisions avec la carte (5)<br>Caméra qui suit le joueur (2)<br>Affichage de la carte (2)<br>Joueur : contrôles et états courir / sauter / tomber (3)<br>Affichage des PV à l'écran (1) | 15 pts |
+| Farmata | **Entités et combat**<br>Module commun de sprites et animations (3)<br>Combat : zones de coups, points de vie, dégâts, invincibilité (4)<br>IA des ennemis : patrouille, détection, poursuite (4)<br>Objets à ramasser, victoire et défaite (2)<br>Sélection et personnalisation du personnage (3) | 16 pts |
+| Calvin | **Outils et interface**<br>Format des niveaux, chargement et sauvegarde (3)<br>Éditeur de cartes (6)<br>Système de plugins avec 1 ou 2 plugins d'exemple (4)<br>Menus principal et pause (2) | 15 pts |
+
+Notes :
+
+- La répartition s'applique au travail restant après le prototype du 18/11/2026 ; le code déjà écrit reste attribué à son auteur.
+- Les structures partagées (`Entity`, `Level`) et les fonctions appelées entre modules sont définies en commun.
+- La répartition est revue chaque semaine et ajustée si une tâche s'avère plus longue que prévu.
 
 ## Échéances
 
