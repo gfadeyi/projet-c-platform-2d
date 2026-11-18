@@ -8,6 +8,9 @@ typedef struct {
     float vx, vy;
     int largeur, hauteur;
     int au_sol;
+    int pv;
+    int pv_max;
+    float invincibilite;
 } Joueur;
 
 void joueur_initialiser(Joueur *joueur, float x, float y);

@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <SDL.h>
 
+#include "entites.h"
 #include "config.h"
 #include "joueur.h"
 
@@ -44,6 +45,12 @@ int main(int argc, char *argv[])
     sol.h = HAUTEUR_FENETRE - SOL_Y;
 
     temps_precedent = SDL_GetTicks();
+
+    Entity *entites = NULL;
+    Entity *ennemi = entity_creer(ENT_ENNEMI, 350.0f, SOL_Y - 48.0f, 32, 48);
+    Entity *objet  = entity_creer(ENT_OBJET,  520.0f, SOL_Y - 25.0f, 20, 20);
+    entity_ajouter(&entites, ennemi);
+    entity_ajouter(&entites, objet);
 
     while (continuer) {
         while (SDL_PollEvent(&evenement)) {
