@@ -37,7 +37,9 @@ Notes :
 
 ## Installation
 
-Sous Linux (Debian / Ubuntu) : si besoin
+Dépendances : le compilateur `gcc`, l'outil `make` et la bibliothèque SDL 1.2.
+
+### Linux (Debian / Ubuntu)
 
 ```bash
 sudo apt install build-essential libsdl1.2-dev
@@ -45,14 +47,57 @@ git clone https://github.com/gfadeyi/projet-c-platform-2d.git
 cd projet-c-platform-2d
 ```
 
+### Windows (MSYS2 + VS Code)
+
+VS Code est seulement l'éditeur : le compilateur et SDL s'installent à part, avec MSYS2.
+
+1. Installer MSYS2 depuis https://www.msys2.org en gardant le dossier proposé, `C:\msys64`.
+   Les réglages VS Code du dépôt (`.vscode/`) utilisent ce chemin.
+2. Ouvrir le terminal « MSYS2 UCRT64 » (menu Démarrer) et mettre MSYS2 à jour :
+
+   ```bash
+   pacman -Syu
+   ```
+
+   Si la fenêtre se ferme, la rouvrir et relancer la même commande.
+3. Installer gcc, SDL 1.2, le débogueur gdb et make :
+
+   ```bash
+   pacman -S --needed mingw-w64-ucrt-x86_64-gcc mingw-w64-ucrt-x86_64-SDL mingw-w64-ucrt-x86_64-gdb make
+   ```
+
+4. Dans VS Code, installer l'extension « C/C++ » de Microsoft (`ms-vscode.cpptools`).
+5. Cloner le dépôt, puis dans VS Code : Fichier > Ouvrir le dossier > `projet-c-platform-2d`
+   (ce dossier précisément, sinon VS Code ne trouve pas les réglages `.vscode/`).
+
+En cas de problème :
+
+| Message | Cause |
+| --- | --- |
+| `make.exe` introuvable | MSYS2 n'est pas installé, ou pas dans `C:\msys64` |
+| `SDL.h: No such file or directory` | Le paquet SDL n'est pas installé (étape 3) |
+| Aucune tâche de build | Le mauvais dossier est ouvert dans VS Code (étape 5) |
+| `SDL.dll` introuvable au lancement | Le jeu est lancé hors de VS Code : copier `C:\msys64\ucrt64\bin\SDL.dll` à côté de `platformer.exe` |
+
 ## Compilation
 
-Le Makefile arrivera avec les premiers fichiers source. La commande de base :
+### Linux
 
 ```bash
-gcc -Wall -Wextra src/*.c -o platformer $(sdl-config --cflags --libs)
-./platformer
+make        # compile le jeu
+make run    # compile puis lance le jeu
+make clean  # supprime les fichiers générés
 ```
+
+### Windows (VS Code)
+
+| Action | Raccourci |
+| --- | --- |
+| Compiler | `Ctrl+Shift+B` |
+| Lancer | `Ctrl+F5` |
+| Lancer avec le débogueur | `F5` |
+
+Le jeu s'ouvre dans une fenêtre de 800×600. Échap ou la croix le ferment.
 
 ## Organisation du dépôt (prévue)
 
