@@ -115,8 +115,17 @@ Le jeu s'ouvre dans une fenêtre de 800×600. Échap ou la croix le ferment.
 - `main` doit toujours compiler : on ne pousse pas directement dessus
 - Une branche par tâche : `feature/saut-joueur`, `fix/collision-sol`
 - Une pull request relue par au moins un autre membre avant la fusion
-- Des commits courts avec un message clair : `Ajouter le saut du joueur`
+- Des commits courts, au format Conventional Commits : `type: description` (voir le tableau ci-dessous)
 - Chacun doit pouvoir expliquer le code dont il est l'auteur le jour de la soutenance
+
+| Type | Usage | Exemple |
+| --- | --- | --- |
+| `feat` | Nouvelle fonctionnalité | `feat: ajouter le saut du joueur` |
+| `fix` | Correction de bug | `fix: corriger le joueur qui traverse le sol` |
+| `docs` | Documentation uniquement | `docs: décrire les contrôles dans le README` |
+| `build` | Makefile, compilation | `build: ajouter la cible run` |
+| `refactor` | Réorganisation du code sans changer son comportement | `refactor: déplacer les constantes dans config.h` |
+| `chore` | Entretien divers (`.gitignore`, configuration) | `chore: ignorer les fichiers générés` |
 
 ```bash
 git checkout main
@@ -124,6 +133,6 @@ git pull
 git checkout -b feature/ma-fonctionnalite
 # ... coder, tester ...
 git add .
-git commit -m "Ajouter le saut du joueur"
+git commit -m "feat: ajouter le saut du joueur"
 git push -u origin feature/ma-fonctionnalite
 ```
