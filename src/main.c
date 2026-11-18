@@ -5,6 +5,7 @@
 #include "entites.h"
 #include "config.h"
 #include "joueur.h"
+#include "hud.h"
 
 #define DELAI_IMAGE_MS 16
 
@@ -59,6 +60,12 @@ int main(int argc, char *argv[])
             } else if (evenement.type == SDL_KEYDOWN
                        && evenement.key.keysym.sym == SDLK_ESCAPE) {
                 continuer = 0;
+            } else if (evenement.type == SDL_KEYDOWN
+                       && evenement.key.keysym.sym == SDLK_k) {
+                joueur_changer_pv(&joueur, -1);
+            } else if (evenement.type == SDL_KEYDOWN
+                       && evenement.key.keysym.sym == SDLK_h) {
+                joueur_changer_pv(&joueur, 1);
             }
         }
 
@@ -75,6 +82,7 @@ int main(int argc, char *argv[])
         SDL_FillRect(ecran, NULL, SDL_MapRGB(ecran->format, 0x00, 0x4C, 0xFF));
         SDL_FillRect(ecran, &sol, SDL_MapRGB(ecran->format, 60, 160, 60));
         joueur_dessiner(&joueur, ecran);
+        hud_dessiner_barre_vie(ecran, joueur.pv, joueur.pv_max);
 
         SDL_Flip(ecran);
 
