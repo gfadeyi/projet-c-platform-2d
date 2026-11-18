@@ -63,3 +63,7 @@ build/
 
 # Guide personnel détaillé du code (reste en local)
 docs/GUIDE_DU_CODE.md
+
+# Sorties redirigées par SDL 1.2 sous Windows
+stdout.txt
+stderr.txt
