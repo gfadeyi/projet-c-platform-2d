@@ -1,5 +1,4 @@
 {
-    // Indique à VS Code où trouver les en-têtes (SDL.h) pour l'autocomplétion
     "configurations": [
         {
             "name": "MSYS2 UCRT64",

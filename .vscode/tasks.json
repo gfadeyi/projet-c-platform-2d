@@ -1,8 +1,6 @@
 {
-    // Tâches VS Code : Ctrl+Shift+B lance "Compiler"
     "version": "2.0.0",
     "options": {
-        // Pour trouver gcc, make, sdl-config et SDL.dll de MSYS2
         "env": {
             "PATH": "C:\\msys64\\ucrt64\\bin;C:\\msys64\\usr\\bin;${env:PATH}"
         }

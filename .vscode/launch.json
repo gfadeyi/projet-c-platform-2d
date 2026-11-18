@@ -1,6 +1,4 @@
 {
-    // F5 : compile puis lance le jeu avec le débogueur gdb
-    // Ctrl+F5 : compile puis lance le jeu sans débogueur
     "version": "0.2.0",
     "configurations": [
         {
