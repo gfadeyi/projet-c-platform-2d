@@ -9,6 +9,8 @@
 #define LARGEUR_JOUEUR 32
 #define HAUTEUR_JOUEUR 48
 
+#define PV_MAX_JOUEUR 5
+
 void joueur_initialiser(Joueur *joueur, float x, float y)
 {
     joueur->x = x;
@@ -18,6 +20,20 @@ void joueur_initialiser(Joueur *joueur, float x, float y)
     joueur->largeur = LARGEUR_JOUEUR;
     joueur->hauteur = HAUTEUR_JOUEUR;
     joueur->au_sol = 0;
+    joueur->pv_max = PV_MAX_JOUEUR;
+    joueur->pv = PV_MAX_JOUEUR;
+    joueur->invincibilite = 0.0f;
+}
+
+void joueur_changer_pv(Joueur *joueur, int delta)
+{
+    joueur->pv += delta;
+    if (joueur->pv < 0) {
+        joueur->pv = 0;
+    }
+    if (joueur->pv > joueur->pv_max) {
+        joueur->pv = joueur->pv_max;
+    }
 }
 
 void joueur_lire_clavier(Joueur *joueur, const Uint8 *touches)
