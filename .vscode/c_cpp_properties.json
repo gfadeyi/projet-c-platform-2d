@@ -1,0 +1,17 @@
+{
+    // Indique à VS Code où trouver les en-têtes (SDL.h) pour l'autocomplétion
+    "configurations": [
+        {
+            "name": "MSYS2 UCRT64",
+            "compilerPath": "C:/msys64/ucrt64/bin/gcc.exe",
+            "includePath": [
+                "${workspaceFolder}/include",
+                "C:/msys64/ucrt64/include/SDL"
+            ],
+            "defines": ["_GNU_SOURCE=1"],
+            "cStandard": "c99",
+            "intelliSenseMode": "windows-gcc-x64"
+        }
+    ],
+    "version": 4
+}

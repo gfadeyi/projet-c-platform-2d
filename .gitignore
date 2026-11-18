@@ -53,3 +53,13 @@ dkms.conf
 
 # debug information files
 *.dwo
+
+# Notes personnelles (ne jamais enregistrer dans Git)
+NOTES.md
+
+# Fichiers générés par la compilation
+build/
+/platformer
+
+# Guide personnel détaillé du code (reste en local)
+docs/GUIDE_DU_CODE.md

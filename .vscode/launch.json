@@ -1,0 +1,21 @@
+{
+    // F5 : compile puis lance le jeu avec le débogueur gdb
+    // Ctrl+F5 : compile puis lance le jeu sans débogueur
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Lancer le jeu",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}\\platformer.exe",
+            "cwd": "${workspaceFolder}",
+            "preLaunchTask": "Compiler",
+            "MIMode": "gdb",
+            "miDebuggerPath": "C:\\msys64\\ucrt64\\bin\\gdb.exe",
+            "environment": [
+                { "name": "PATH", "value": "C:\\msys64\\ucrt64\\bin;${env:PATH}" }
+            ],
+            "externalConsole": false
+        }
+    ]
+}
