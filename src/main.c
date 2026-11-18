@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <SDL.h>
 
+#include "entites.h"
 #include "config.h"
 #include "joueur.h"
 #include "hud.h"
@@ -46,6 +47,12 @@ int main(int argc, char *argv[])
 
     temps_precedent = SDL_GetTicks();
 
+    Entity *entites = NULL;
+    Entity *ennemi = entity_creer(ENT_ENNEMI, 350.0f, SOL_Y - 48.0f, 32, 48);
+    Entity *objet  = entity_creer(ENT_OBJET,  520.0f, SOL_Y - 25.0f, 20, 20);
+    entity_ajouter(&entites, ennemi);
+    entity_ajouter(&entites, objet);
+
     while (continuer) {
         while (SDL_PollEvent(&evenement)) {
             if (evenement.type == SDL_QUIT) {
@@ -71,17 +78,19 @@ int main(int argc, char *argv[])
 
         joueur_lire_clavier(&joueur, SDL_GetKeyState(NULL));
         joueur_mettre_a_jour(&joueur, dt);
+        entity_mettre_a_jour(entites, &joueur, dt);
 
         SDL_FillRect(ecran, NULL, SDL_MapRGB(ecran->format, 0x00, 0x4C, 0xFF));
         SDL_FillRect(ecran, &sol, SDL_MapRGB(ecran->format, 60, 160, 60));
         joueur_dessiner(&joueur, ecran);
+        entity_dessiner_tout(entites, ecran);
         hud_dessiner_barre_vie(ecran, joueur.pv, joueur.pv_max);
 
         SDL_Flip(ecran);
 
         SDL_Delay(DELAI_IMAGE_MS);
     }
-
+    entity_liberer_tout(&entites);
     SDL_Quit();
     return EXIT_SUCCESS;
 }
