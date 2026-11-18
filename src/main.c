@@ -78,17 +78,19 @@ int main(int argc, char *argv[])
 
         joueur_lire_clavier(&joueur, SDL_GetKeyState(NULL));
         joueur_mettre_a_jour(&joueur, dt);
+        entity_mettre_a_jour(entites, &joueur, dt);
 
         SDL_FillRect(ecran, NULL, SDL_MapRGB(ecran->format, 0x00, 0x4C, 0xFF));
         SDL_FillRect(ecran, &sol, SDL_MapRGB(ecran->format, 60, 160, 60));
         joueur_dessiner(&joueur, ecran);
+        entity_dessiner_tout(entites, ecran);
         hud_dessiner_barre_vie(ecran, joueur.pv, joueur.pv_max);
 
         SDL_Flip(ecran);
 
         SDL_Delay(DELAI_IMAGE_MS);
     }
-
+    entity_liberer_tout(&entites);
     SDL_Quit();
     return EXIT_SUCCESS;
 }

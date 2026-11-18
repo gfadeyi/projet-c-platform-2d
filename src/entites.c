@@ -67,10 +67,7 @@ void entity_infliger_degats_joueur(Joueur *joueur, int degats)
     if (joueur == NULL || joueur->invincibilite > 0.0f) {
         return;
     }
-    joueur->pv -= degats;
-    if (joueur->pv < 0) {
-        joueur->pv = 0;
-    }
+    joueur_changer_pv(joueur, -degats);
     joueur->invincibilite = DUREE_INVINCIBILITE;
 }
 
@@ -103,6 +100,7 @@ void entity_mettre_a_jour(Entity *tete, Joueur *joueur, float dt)
             } else if (e->type == ENT_OBJET) {
                 if (collision_avec_joueur(e, joueur)) {
                     e->actif = 0;
+                    joueur_changer_pv(joueur, 1);
                 }
             }
         }
